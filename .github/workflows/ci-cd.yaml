@@ -14,10 +14,10 @@ jobs:
          sudo npm i -g firebase-tools
      - name: Build App
        run: |
-         npm run build-prod
+         npm run build
      - uses: FirebaseExtended/action-hosting-deploy@v0
        with:
          repoToken: '${{ secrets.GITHUB_TOKEN }}'
          firebaseServiceAccount: '${{ secrets.FIREBASE_TOKEN }}'
-         channelId: live
+         channelId: prod
          projectId: "${{ secrets.FIREBASE_ID }}"
