@@ -1,26 +1,50 @@
-name: Deploy to Asset-Management Project
+# name: Deploy to Asset-Management Project
+# on:
+#   push:
+#     branches:
+#       - main
+# jobs:
+#  deploy_asset_management_website:
+#     runs-on: ubuntu-latest
+#     steps:
+#      - uses: actions/checkout@v2
+#      - name: Install Dependencies
+#        run: |
+#           npm i
+#           npm i -g firebase-tools
+#      - name: Build App
+#        run: |
+#          npm run build
+#      - uses: FirebaseExtended/action-hosting-deploy@v0
+#        with:
+#          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+#          firebaseServiceAccount: '${{ secrets.FIREBASE_TOKEN }}'
+#          channelId: preview
+#          projectId: "${{ secrets.FIREBASE_ID }}"
+
+name: Firebase Deploy
+
 on:
   push:
-    branches:
-      - main
+    branches: 
+    - main
+
 jobs:
- deploy_asset_management_website:
+  build:
     runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v2
-     - name: Install Dependencies
-       run: |
-          npm i
-          npm i -g firebase-tools
-     - name: Build App
-       run: |
-         npm run build
-     - uses: FirebaseExtended/action-hosting-deploy@v0
-       with:
-         repoToken: '${{ secrets.GITHUB_TOKEN }}'
-         firebaseServiceAccount: '${{ secrets.FIREBASE_TOKEN }}'
-         channelId: preview
-         projectId: "${{ secrets.FIREBASE_ID }}"
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - run: npm i
+      - run: npm run build
+      - name: GitHub Action for Firebase
+        uses: w9jds/firebase-action@v1.5.0
+        with:
+          args: deploy --only hosting:prod
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
 # name: Firebase hosting
 
