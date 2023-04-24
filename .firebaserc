@@ -1,5 +1,18 @@
 {
   "projects": {
     "default": "test-ci-cd-automation"
-  }
+  },
+  "targets": {
+    "test-ci-cd-automation": {
+      "hosting": {
+        "dev": [
+          "test-ci-cd-automation"
+        ],
+        "prod": [
+          "prod-test-ci-cd-automation"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

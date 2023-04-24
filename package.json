@@ -16,7 +16,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build-prod": "react-scripts build && firebase deploy --only hosting:prod"
+    "deploy-prod": "react-scripts build && firebase deploy --only hosting:prod",
+    "deploy-dev": "react-scripts build && firebase deploy --only hosting:dev"
   },
   "eslintConfig": {
     "extends": [
