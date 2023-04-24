@@ -13,7 +13,7 @@
     },
     {
       "public": "build",
-      "target": "prod",
+      "target": "dev",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
